@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Joanne Yang</title>
+<meta name="description" content="Joanne Yang, CPA, MMA. Analytics and AI strategy for brand, customer and enterprise performance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single scroll. Hero with portrait → proof strip → interactive brand map → case studies (open in a dialog) → approach → experience → leadership → contact */
+:root{
+  --paper:#F5F6F3; --card:#FFFFFF; --ink:#14171D; --soft:#5B6270; --line:#DCDFE3;
+  --accent:#3343C4; --accent-soft:#E6E8FA; --marigold:#C98A10; --marigold-soft:#F7EDD5;
+  --good:#1F8A5B; --bad:#C2412F; --grid:#E7E9EC;
+  --serif:'Instrument Serif',Georgia,'Times New Roman',serif;
+  --sans:'Public Sans','Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#101217; --card:#171A21; --ink:#ECEEF2; --soft:#9AA1AE; --line:#2A2F39;
+  --accent:#8C98FF; --accent-soft:#232848; --marigold:#E7B24A; --marigold-soft:#3A2F17;
+  --good:#52C68F; --bad:#F07562; --grid:#252A33; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#101217; --card:#171A21; --ink:#ECEEF2; --soft:#9AA1AE; --line:#2A2F39;
+  --accent:#8C98FF; --accent-soft:#232848; --marigold:#E7B24A; --marigold-soft:#3A2F17;
+  --good:#52C68F; --bad:#F07562; --grid:#252A33; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.in{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+.serif{font-family:var(--serif)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .in{display:flex;align-items:center;gap:20px;padding-block:12px}
+.nav .nm{font-family:var(--serif);font-size:22px;white-space:nowrap}
+.nav nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav nav::-webkit-scrollbar{display:none}
+.nav nav a{text-decoration:none;font-size:14px;color:var(--soft);padding:6px 10px;border-radius:999px;white-space:nowrap}
+.nav nav a:hover{color:var(--ink);background:var(--card)}
+@media (max-width:560px){.nav .nm{display:none}.nav nav{margin-left:0}}
+
+/* hero */
+.hero{padding-block:56px 36px}
+.hero .in{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+@media (max-width:780px){.hero .in{grid-template-columns:1fr}.portrait{order:-1}}
+.hero h1{font-family:var(--serif);font-size:clamp(46px,8vw,104px);line-height:.92;letter-spacing:-.02em}
+.hero h1 i{color:var(--accent)}
+.hero .role{font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-top:18px}
+.hero .lede{font-size:clamp(18px,2.1vw,21px);max-width:58ch;margin-top:18px;color:var(--ink)}
+.hero .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:15px;padding:11px 18px;border-radius:999px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;font-family:inherit}
+.btn.line{background:transparent;color:var(--ink)}
+.portrait{position:relative;width:min(280px,62vw);aspect-ratio:1;max-width:100%}
+.portrait .ph{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:var(--card);border:1px solid var(--line)}
+.portrait img{width:100%;height:100%;object-fit:cover;transform:scale(1.13)}
+.portrait .tag{position:absolute;right:-6px;bottom:14px;background:var(--marigold);color:#1b1404;font-family:var(--mono);font-size:11.5px;font-weight:500;padding:6px 10px;border-radius:999px;letter-spacing:.04em}
+.creds{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.creds span{font-size:13px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 11px;color:var(--soft)}
+
+/* proof */
+.proof{border-block:1px solid var(--line);background:var(--card)}
+.proof .in{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr))}
+.proof .in>div{padding:20px 18px 20px 0}
+.proof b{display:block;font-family:var(--serif);font-size:44px;font-weight:400;line-height:1;font-variant-numeric:tabular-nums}
+.proof span{font-size:13.5px;color:var(--soft)}
+
+section.blk{padding-block:72px 8px}
+.shead{display:grid;gap:12px;margin-bottom:28px;max-width:760px}
+.shead h2{font-family:var(--serif);font-size:clamp(34px,4.6vw,54px);line-height:1.02;letter-spacing:-.01em}
+.shead p{color:var(--soft);font-size:17px}
+
+/* brand map */
+.mapwrap{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:24px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+@media (max-width:860px){.mapwrap{grid-template-columns:1fr}}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;background:var(--paper)}
+.seg button{border:0;background:transparent;font:inherit;font-size:13.5px;color:var(--soft);padding:5px 13px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper);font-weight:600}
+svg text{fill:var(--soft);font-family:var(--sans);font-size:11.5px}
+.bub{cursor:pointer;transition:transform .7s cubic-bezier(.3,.7,.2,1)}
+.bub circle{transition:r .7s, fill-opacity .2s}
+.bub:hover circle,.bub.on circle{fill-opacity:.95}
+.bub text{fill:var(--ink);font-weight:600;font-size:12px}
+.side{display:grid;gap:14px;align-content:start}
+.side h3{font-family:var(--serif);font-size:30px;line-height:1.05}
+.kv{display:grid;grid-template-columns:1fr auto;gap:6px 14px;font-size:14px;border-top:1px solid var(--line);padding-top:12px}
+.kv dt{color:var(--soft)} .kv dd{margin:0;font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.read{background:var(--accent-soft);border-radius:12px;padding:12px 14px;font-size:14.5px}
+.synth{font-family:var(--mono);font-size:11px;color:var(--marigold);background:var(--marigold-soft);padding:3px 8px;border-radius:6px;letter-spacing:.04em;text-transform:uppercase}
+
+/* work */
+.work{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:16px}
+.case{display:grid;gap:12px;align-content:start;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;cursor:pointer;font:inherit;color:inherit;transition:border-color .2s,transform .2s}
+.case:hover{border-color:var(--accent);transform:translateY(-2px)}
+.case .k{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.case h3{font-family:var(--serif);font-size:28px;line-height:1.05}
+.case p{color:var(--soft);font-size:14.5px}
+.case .metric{font-family:var(--serif);font-size:22px;color:var(--accent);line-height:1.15}
+.case .more{font-weight:600;font-size:14px;color:var(--accent)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--soft)}
+
+dialog{border:0;padding:0;border-radius:18px;max-width:min(760px,calc(100vw - 32px));width:100%;background:var(--card);color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(10,12,18,.55)}
+.dlg{display:grid;gap:18px;padding:28px;max-height:86vh;overflow:auto}
+.dlg h3{font-family:var(--serif);font-size:clamp(30px,4vw,42px);line-height:1.02}
+.dlg .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px}
+.dlg h4{margin:0 0 4px;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+.dlg .why{border-left:3px solid var(--marigold);padding:4px 0 4px 14px;font-size:15px}
+.dlg .x{position:sticky;top:0;justify-self:end;border:1px solid var(--line);background:var(--card);border-radius:999px;width:36px;height:36px;cursor:pointer;font-size:18px;color:var(--ink)}
+.dlg .links{display:flex;flex-wrap:wrap;gap:10px}
+.sim{display:grid;gap:12px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px}
+.simrow{display:flex;flex-wrap:wrap;gap:10px}
+.f{display:grid;gap:4px;font-size:12px;color:var(--soft);font-weight:600}
+.f select{font:inherit;font-size:14px;font-weight:400;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+.tog{display:flex;flex-wrap:wrap;gap:6px}
+.tog button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--soft);border-radius:999px;padding:5px 12px;cursor:pointer}
+.tog button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--card);font-weight:600}
+.simk{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,140px),1fr));gap:10px}
+.simk div{display:grid;gap:2px}
+.simk span{font-size:12px;color:var(--soft)}
+.simk b{font-family:var(--serif);font-size:28px;font-weight:400;line-height:1.1;font-variant-numeric:tabular-nums}
+.rng{position:relative;height:16px;border-radius:999px;background:var(--grid)}
+.rng .band{position:absolute;top:0;bottom:0;border-radius:999px;background:var(--accent-soft);border:1px solid var(--accent);transition:all .4s}
+.rng .pt{position:absolute;top:-4px;width:4px;height:24px;margin-left:-2px;border-radius:2px;background:var(--accent);transition:left .4s}
+.rng .ly{position:absolute;top:-4px;width:2px;height:24px;background:var(--ink);opacity:.6;transition:left .4s}
+.rngl{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--soft);flex-wrap:wrap}
+
+/* approach */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:0;border-top:2px solid var(--ink)}
+.steps>div{padding:18px 20px 18px 0;display:grid;gap:6px}
+.steps b{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:500}
+.steps h3{font-family:var(--serif);font-size:26px}
+.steps p{color:var(--soft);font-size:14.5px}
+
+/* experience */
+.xp{display:grid;gap:0}
+.job{display:grid;grid-template-columns:200px 1fr;gap:24px;padding-block:22px;border-top:1px solid var(--line)}
+@media (max-width:700px){.job{grid-template-columns:1fr;gap:6px}}
+.job .when{font-family:var(--mono);font-size:13px;color:var(--soft)}
+.job h3{font-family:var(--serif);font-size:28px;line-height:1.1}
+.job .t{color:var(--accent);font-weight:600;font-size:15px;margin-top:2px}
+.job ul{margin:10px 0 0;padding-left:18px;display:grid;gap:5px;font-size:15px;color:var(--ink)}
+.job li::marker{color:var(--soft)}
+
+.lead{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px}
+.lead>div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:6px;align-content:start}
+.lead h3{font-family:var(--serif);font-size:24px;line-height:1.1}
+.lead p{font-size:14.5px;color:var(--soft)}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:20px}
+.skills div{display:grid;gap:8px;align-content:start}
+
+.contact{padding-block:80px 60px}
+.contact .box{background:var(--ink);color:var(--paper);border-radius:22px;padding:clamp(24px,5vw,52px);display:grid;gap:18px}
+.contact h2{font-family:var(--serif);font-size:clamp(38px,6vw,72px);line-height:.98}
+.contact .label{color:color-mix(in srgb,var(--paper) 65%,transparent)}
+.mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mail code{font-family:var(--mono);font-size:clamp(15px,2.4vw,22px);user-select:all;word-break:break-all}
+.contact .btn{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.contact .btn.line{background:transparent;color:var(--paper)}
+footer{padding-block:0 40px;color:var(--soft);font-size:13px}
+.builds{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px}
+.build{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:grid;gap:14px;align-content:start}
+.build h3{font-family:var(--serif);font-size:36px;line-height:1}
+.build .btn{justify-self:start}
+.bstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;border-block:1px solid var(--line);padding-block:12px}
+.bstats b{display:block;font-family:var(--serif);font-size:30px;font-weight:400;line-height:1.05;color:var(--accent)}
+.bstats span{font-size:12px;color:var(--soft);line-height:1.35;display:block}
+.sub2{font-size:14px;color:var(--soft)}
+.lnk{font-weight:600;font-size:14px;color:var(--accent);text-decoration:none;margin-top:4px}
+.lnk:hover{text-decoration:underline}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+
+</head>
+<body>
+<header class="nav"><div class="in">
+  <span class="nm">Joanne Yang</span>
+  <nav aria-label="Sections"><a href="#map">Brand map</a><a href="#work">Work</a><a href="#builds">MMA builds</a><a href="#approach">Approach</a><a href="#experience">Experience</a><a href="#leadership">Leadership</a><a href="#contact">Contact</a></nav>
+</div></header>
+
+<main>
+<section class="hero"><div class="in">
+  <div>
+    <h1>I connect what customers feel<br>to what the business <i>earns.</i></h1>
+    <div class="role">Joanne Yang · CPA · MMA · Analytics &amp; AI strategy</div>
+    <p class="lede">Analytics and finance leader with seven years across assurance, corporate finance and enterprise analytics, four of them leading teams. Trained in finance and accounting, I spent my KPMG years auditing large publicly listed banks. Today I build the measurement, forecasting and automation that executives run multi-brand businesses on, and I explain the numbers in plain language.</p>
+    <div class="creds"><span>CPA, 2023</span><span>Master of Management Analytics, Queen's Smith, Dec 2026</span><span>BComm, Accounting &amp; Finance</span><span>Bank audit portfolio at KPMG</span><span>SQL · Python · Power BI</span></div>
+    <div class="cta"><a class="btn" href="#work">See selected work</a><a class="btn line" href="https://www.linkedin.com/in/joanne-yangyy/" target="_blank" rel="noopener">LinkedIn ↗</a><a class="btn line" href="#contact">Get in touch</a></div>
+  </div>
+  <div class="portrait"><div class="ph"><img src="data:image/jpeg;base64,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" alt="Portrait of Joanne Yang"></div><span class="tag">CPA · MMA</span></div>
+</div></section>
+
+<div class="proof"><div class="in">
+  <div><b>5</b><span>consumer brands measured weekly against budget and last year</span></div>
+  <div><b>140</b><span>point brand-standards model across three restaurant concepts</span></div>
+  <div><b>30 hrs</b><span>of analyst time returned every day by one automation</span></div>
+  <div><b>1</b><span>machine-learning revenue forecast in production with operators</span></div>
+  <div><b>6</b><span>people on the finance team I lead today</span></div>
+</div></div>
+
+<section class="blk" id="map"><div class="in">
+  <div class="shead">
+    <div class="label">Interactive · how I think about brand performance</div>
+    <h2>Where experience and revenue disagree, the brand conversation starts.</h2>
+    <p>Each bubble is a consumer brand, plotted by guest-experience score against sales versus budget, sized by revenue. Switch quarters to watch brands move, and select one for the read-out I would bring to a leadership meeting.</p>
+  </div>
+  <div class="mapwrap">
+    <div style="display:grid;gap:12px;min-width:0">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between"><div class="seg" id="qtr"></div><span class="synth">Synthetic data</span></div>
+      <div id="chart"></div>
+    </div>
+    <aside class="side" id="side" aria-live="polite"></aside>
+  </div>
+</div></section>
+
+<section class="blk" id="work"><div class="in">
+  <div class="shead">
+    <div class="label">Selected work · 2023 to now</div>
+    <h2>Measurement, forecasting and automation in production.</h2>
+    <p>Every project below is live inside a multi-property hospitality and entertainment group. Visuals and demos use synthetic data; no confidential figures are shown.</p>
+  </div>
+  <div class="work" id="cases"></div>
+</div></section>
+
+<section class="blk" id="builds"><div class="in">
+  <div class="shead">
+    <div class="label">Built in the MMA · live apps</div>
+    <h2>From model to working product.</h2>
+    <p>Two course builds you can open and use. Both run on public or illustrative data.</p>
+  </div>
+  <div class="builds">
+    <article class="build">
+      <div class="label">Credit risk · team project</div>
+      <h3>Loan Approval Evaluator</h3>
+      <p>A loan-screening tool that takes an applicant's income, employment, credit history and loan details and returns an approve or deny decision, with debt-to-income, loan-to-income and payment-to-income ratios checked against thresholds.</p>
+      <div class="bstats"><div><b>0.984</b><span>AUC, gradient boosting on held-out test</span></div><div><b>92.6%</b><span>test accuracy</span></div><div><b>3</b><span>models compared: logistic regression, random forest, gradient boosting</span></div></div>
+      <p class="sub2">Logistic-regression marginal effects explain the top drivers of each decision; permutation importance shows debt-to-income and credit score matter most. A leakage check confirms the result does not depend on interest rate.</p>
+      <div class="tags"><span>Python</span><span>scikit-learn</span><span>Explainability</span><span>Credit risk</span></div>
+      <a class="btn" href="https://joanneyangyy-ui.github.io/Loan-Evaluator/" target="_blank" rel="noopener">Open the evaluator ↗</a>
+    </article>
+    <article class="build">
+      <div class="label">Consumer product prototype</div>
+      <h3>SmartCart</h3>
+      <p>A grocery app concept for downtown Toronto: best price, best route, one fee. It compares item prices across four grocers, splits the basket across the cheapest stores, maps the drive on OpenStreetMap and draws the aisle path inside each store.</p>
+      <div class="bstats"><div><b>4</b><span>grocers compared item by item</span></div><div><b>5</b><span>screens: cart, map, compare, plan, checkout</span></div><div><b>1</b><span>platform fee instead of one per store</span></div></div>
+      <p class="sub2">Designed around the customer's trade-off between saving money and saving time, with personalized deals from shopping history.</p>
+      <div class="tags"><span>Product design</span><span>Pricing</span><span>Routing</span><span>Customer journey</span></div>
+      <a class="btn" href="https://joanneyangyy-ui.github.io/Smart-Cart/" target="_blank" rel="noopener">Open SmartCart ↗</a>
+    </article>
+  </div>
+</div></section>
+
+<dialog id="dlg" aria-labelledby="dlg-t"><div class="dlg" id="dlg-body"></div></dialog>
+
+<section class="blk" id="approach"><div class="in">
+  <div class="shead">
+    <div class="label">Approach</div>
+    <h2>Start from the decision, not the dashboard.</h2>
+  </div>
+  <div class="steps">
+    <div><b>01 · Frame</b><h3>Name the decision</h3><p>Who acts on this number, how often, and what would they do differently? That sets the metric, the grain and the cadence.</p></div>
+    <div><b>02 · Build</b><h3>Fix the foundation</h3><p>Reconcile sources to the ledger first. A brand metric nobody trusts is worse than no metric.</p></div>
+    <div><b>03 · Measure</b><h3>Model what moves it</h3><p>Forecasts, drivers and scenario tools that show cause, not just change, with the uncertainty stated.</p></div>
+    <div><b>04 · Land</b><h3>Tell it, then automate it</h3><p>One page leaders read in two minutes, delivered on a schedule, with the controls that let it run without me.</p></div>
+  </div>
+</div></section>
+
+<section class="blk" id="experience"><div class="in">
+  <div class="shead"><div class="label">Experience</div><h2>Finance rigour, analytics range.</h2></div>
+  <div class="xp">
+    <div class="job"><div class="when">Mar 2025 to present</div><div><h3>Canad Inns</h3><div class="t">Controller, Corporate Finance &amp; Performance Analytics</div><ul>
+      <li>Built and deployed a machine-learning hotel revenue forecast and the Power BI what-if tool operators use for pricing and staffing.</li>
+      <li>Consolidated multiple financial systems into scheduled-refresh Power BI suites for F&amp;B brand performance, marketing spend and repairs, by budget and prior year.</li>
+      <li>Designed brand-standards and guest-experience measurement across three restaurant concepts.</li>
+      <li>Automated daily wage-cost reporting for 15 properties, about two hours a day each; built HR lifecycle automation on Power Automate and Azure.</li>
+      <li>Lead a six-person finance team; own CRA and external audit delivery.</li></ul></div></div>
+    <div class="job"><div class="when">Oct 2023 to Feb 2025</div><div><h3>Richardson International</h3><div class="t">Assistant Controller</div><ul>
+      <li>Built the executive working-capital dashboard in Power BI, OneStream and Power Query.</li>
+      <li>Owned consolidated reporting and divisional SG&amp;A planning with area directors.</li>
+      <li>Led process standardization and system transitions while coaching analysts.</li></ul></div></div>
+    <div class="job"><div class="when">Jan 2022 to Oct 2023</div><div><h3>KPMG</h3><div class="t">Senior Accountant</div><ul>
+      <li>Main portfolio: large publicly listed clients in the banking industry, covering financial reporting, controls and risk.</li>
+      <li>In-charge senior on the first-year audit of a publicly listed financial-services client, leading a cross-regional team.</li>
+      <li>Turned complex IFRS, control and risk issues into executive-ready communication.</li></ul></div></div>
+    <div class="job"><div class="when">2018 to 2022</div><div><h3>Earlier</h3><div class="t">Reporting, assurance and corporate finance</div><ul>
+      <li>Grant Thornton, Shelter Canadian Properties (REIT reporting), Richardson International and The Dufresne Group (marketing budget).</li></ul></div></div>
+  </div>
+</div></section>
+
+<section class="blk" id="leadership"><div class="in">
+  <div class="shead"><div class="label">Leadership &amp; learning</div><h2>Building analytics communities, not just models.</h2></div>
+  <div class="lead">
+    <div><div class="label">Queen's University Alternative Asset Fund</div><h3>Data Director</h3><p>Lead the fund's data team: a SQL Server pipeline from brokerage statements feeding Power BI return, allocation and risk reporting, including 10-year VaR and expected shortfall.</p></div>
+    <div><div class="label">Queen's MMA, class of 2026</div><h3>Class President</h3><p>Launched the MMA Podcast Speaker Series on Spotify and a run of alumni speaker events connecting the cohort with industry leaders.</p><a class="lnk" href="https://open.spotify.com/episode/7rKT4e1uJDBD8SwUDu7980" target="_blank" rel="noopener">Listen on Spotify ↗</a></div>
+    <div><div class="label">AI newsletter</div><h3>The Analyst's Edge</h3><p>Launched the cohort's AI newsletter: a weekly read that helps classmates turn new tools into practical analytics work.</p></div>
+    <div><div class="label">Profession</div><h3>CPA mentor &amp; CFE coach</h3><p>Coach candidates through the Common Final Examination and early-career decisions.</p></div>
+  </div>
+  <div style="height:40px"></div>
+  <div class="skills">
+    <div><div class="label">Analytics &amp; ML</div><div class="tags"><span>SQL</span><span>Python (pandas, scikit-learn)</span><span>Forecasting</span><span>Feature engineering</span><span>Scenario analysis</span></div></div>
+    <div><div class="label">BI &amp; storytelling</div><div class="tags"><span>Power BI</span><span>DAX</span><span>Power Query</span><span>Tableau</span><span>Executive reporting</span></div></div>
+    <div><div class="label">Automation &amp; cloud</div><div class="tags"><span>Power Automate</span><span>Power Apps</span><span>Microsoft Azure</span><span>REST APIs</span><span>Generative AI tools</span></div></div>
+    <div><div class="label">Enterprise systems</div><div class="tags"><span>OneStream</span><span>Great Plains</span><span>Sage</span><span>SAP</span><span>Caseware</span></div></div>
+  </div>
+</div></section>
+
+<section class="contact" id="contact"><div class="in"><div class="box">
+  <div class="label">Contact</div>
+  <h2>Let's talk about what your brand data could decide.</h2>
+  <div class="mail"><code id="em">joanneyangyy@gmail.com</code><button class="btn" id="copy" type="button">Copy email</button><a class="btn line" href="mailto:joanneyangyy@gmail.com">Open mail app</a><a class="btn line" href="https://www.linkedin.com/in/joanne-yangyy/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+  <p style="opacity:.75;font-size:14px;font-family:var(--mono)">linkedin.com/in/joanne-yangyy</p>
+</div></div></section>
+<footer><div class="in">Project visuals and demos on this site use synthetic data. No confidential company figures are shown.</div></footer>
+</main>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const DEMO='https://claude.ai/artifact/C96BUxrMWEufeqcwn21ZwH';
+
+/* ---- brand map ---- */
+const BR=[
+ {n:'Sports pub',c:'var(--accent)',q:[[79,91,1.10],[82,95,1.14],[84,99,1.16]],note:'Experience is recovering faster than sales. Service scores rose after manager table visits became a scored standard; revenue usually follows one or two quarters later.'},
+ {n:'Fresh-casual',c:'var(--good)',q:[[90,102,.62],[91,104,.66],[89,103,.65]],note:'The portfolio\'s quiet winner: strong on both axes. The risk is complacency, so watch food-quality scores that slipped this quarter.'},
+ {n:'Sports bar & grill',c:'var(--marigold)',q:[[72,105,.48],[70,103,.46],[68,98,.44]],note:'Revenue ahead of experience, and experience falling. Event traffic is masking a guest problem. This is the brand to act on before it shows up in sales.'},
+ {n:'Lounge',c:'#9B59B6',q:[[86,88,.30],[85,90,.31],[87,94,.33]],note:'Guests like it, but it misses budget. A pricing and promotion question, not a service question.'},
+ {n:'Retail',c:'#2A9DB0',q:[[83,108,.40],[84,110,.42],[85,112,.44]],note:'Basket size is driving growth above budget, with steady experience scores. A candidate to fund more.'}];
+let Q=0,SEL=2;
+const W=640,H=420,pl=52,pr=16,pt=16,pb=46,x0=64,x1=96,y0=84,y1=116;
+const X=v=>pl+(v-x0)/(x1-x0)*(W-pl-pr), Y=v=>pt+(1-(v-y0)/(y1-y0))*(H-pt-pb);
+function seg(){const s=$('#qtr');['Q1','Q2','Q3'].forEach((l,i)=>{const b=document.createElement('button');b.type='button';b.textContent=l+' FY26';b.setAttribute('aria-pressed',String(i===Q));b.onclick=()=>{Q=i;[...s.children].forEach((c,j)=>c.setAttribute('aria-pressed',String(j===i)));move();side()};s.appendChild(b)})}
+function draw(){let s='<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Brand map: guest experience versus sales to budget">';
+  for(let v=y0;v<=y1;v+=8){s+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="var(--grid)"/><text x="'+(pl-8)+'" y="'+(Y(v)+4)+'" text-anchor="end">'+v+'%</text>'}
+  for(let v=x0;v<=x1;v+=8){s+='<line y1="'+pt+'" y2="'+(H-pb)+'" x1="'+X(v)+'" x2="'+X(v)+'" stroke="var(--grid)"/><text x="'+X(v)+'" y="'+(H-pb+18)+'" text-anchor="middle">'+v+'%</text>'}
+  s+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+Y(100)+'" y2="'+Y(100)+'" stroke="var(--ink)" stroke-dasharray="5 4" opacity=".6"/><line y1="'+pt+'" y2="'+(H-pb)+'" x1="'+X(80)+'" x2="'+X(80)+'" stroke="var(--ink)" stroke-dasharray="5 4" opacity=".6"/>';
+  s+='<text x="'+(W-pr-6)+'" y="'+(pt+14)+'" text-anchor="end" style="font-weight:600">Strong on both</text><text x="'+(pl+8)+'" y="'+(pt+14)+'">Revenue ahead of experience</text><text x="'+(W-pr-6)+'" y="'+(H-pb-8)+'" text-anchor="end">Experience ahead of revenue</text><text x="'+(pl+8)+'" y="'+(H-pb-8)+'">Needs attention</text>';
+  s+='<text x="'+((W+pl)/2)+'" y="'+(H-6)+'" text-anchor="middle">Guest-experience score</text><text transform="translate(13 '+((H-pb+pt)/2)+') rotate(-90)" text-anchor="middle">Sales vs budget</text>';
+  BR.forEach((b,i)=>{s+='<g class="bub" data-i="'+i+'" tabindex="0" role="button" aria-label="'+b.n+'"><circle r="20" fill="'+b.c+'" fill-opacity=".72" stroke="'+b.c+'" stroke-width="2"/><text text-anchor="middle" y="-28">'+b.n+'</text></g>'});
+  $('#chart').innerHTML=s+'</svg>';
+  document.querySelectorAll('.bub').forEach(g=>{const go=()=>{SEL=+g.dataset.i;move();side()};g.addEventListener('click',go);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}})});
+  move()}
+function move(){document.querySelectorAll('.bub').forEach(g=>{const b=BR[+g.dataset.i],[x,y,r]=b.q[Q];g.style.transform='translate('+X(x)+'px,'+Y(y)+'px)';g.querySelector('circle').setAttribute('r',(14+r*22).toFixed(1));g.classList.toggle('on',+g.dataset.i===SEL)})}
+function side(){const b=BR[SEL],[x,y,r]=b.q[Q],p=Q>0?b.q[Q-1]:null;const d=(a,c,u)=>p?'<span style="color:'+((a-c)>=0?'var(--good)':'var(--bad)')+'">'+((a-c)>=0?'+':'')+(a-c).toFixed(u)+'</span>':'';
+  $('#side').innerHTML='<div class="label">Q'+(Q+1)+' read-out</div><h3>'+b.n+'</h3><dl class="kv"><dt>Guest-experience score</dt><dd>'+x+'% '+d(x,p&&p[0],0)+'</dd><dt>Sales vs budget</dt><dd>'+y+'% '+d(y,p&&p[1],0)+'</dd><dt>Quarterly revenue</dt><dd>$'+r.toFixed(2)+'M</dd></dl><p class="read">'+b.note+'</p><p style="font-size:13px;color:var(--soft)">Built from the same ingredients as my production work: GL sales and budget, mystery-shop scores, guest surveys and online reviews.</p>'}
+seg();draw();side();
+
+/* ---- cases ---- */
+const C=[
+ {id:'brands',t:'Multi-brand performance rankings',k:'Brand portfolio',m:'5 brands ranked every week',s:'A 21-page weekly report that ranks every restaurant and retail outlet against budget and last year.',ch:'Sales, budgets, promotions, voids and online reviews for five consumer brands lived in separate POS and GL systems. Brand directors saw results monthly, after the chance to act had passed.',ap:'Modelled item-level POS data alongside GL actuals and budget on a fiscal calendar. Built rankings by brand and outlet, food and bar mix, promotion redemption, void diagnostics, top sellers by menu category, online review results and average spend per guest.',im:'Directors start each week with one ranked view and can trace a weak number to a menu item, a promotion or a void pattern in a few clicks.',why:'This is brand analytics at portfolio level: consistent definitions across brands, performance against plan, and drill paths that lead to an action.',st:['Power BI','DAX','POS data','GL'],demo:'fb-weekly'},
+ {id:'cx',t:'Brand standards and guest experience',k:'Customer measurement',m:'140-point scoring model',s:'A weighted mystery-shop model across three restaurant concepts, with question-level diagnostics.',ch:'Mystery-shopper visits came back as free-text forms. Leaders could not compare locations or see which part of the guest journey lost points.',ap:'Designed a 140-point model weighted across Ambiance (35), Service (80) and Food & Beverage (25). Built three dashboard versions, location rankings, question-level scores and a searchable feedback wall, delivered weekly to brand leaders and general managers.',im:'Turned "service felt slow" into specific, coachable standards, and gave each location a comparable score over time.',why:'Brand health is a measurement design problem first. Choosing the weights and the questions is where analytics shapes what a brand promises.',st:['Survey design','Power Query','Power BI'],demo:'silent-shop'},
+ {id:'ml',t:'Revenue forecasting and what-if model',k:'Machine learning',m:'5 business lines, best and worst case',s:'Forecasts for the event centre, sports pubs, lounges, banquets and hotel occupancy, served as a 10-page scenario tool.',ch:'Operators planned staffing, pricing and events from last year\'s numbers and instinct, with no view of how weather, events and holidays move revenue across venues.',ap:'Joined daily sales from the financial systems with RMS occupancy, events, holidays, long weekends, home hockey games, concerts, extreme-cold days and seasonality. Engineered year-over-year, month-over-month and 14-day lag features, trained and tested the models in Python, then exported scenario tables to Power BI: predicted versus last year, best and worst case, and an actual-versus-forecast timeline for each line of business.',im:'Management sets the conditions (a holiday long weekend with a concert, say) and sees expected revenue, covers and the likely range before committing staff and pricing. Stakeholder feedback was strongly positive.',why:'Marketing mix and campaign planning use the same pattern: model the drivers, then give leaders a scenario tool with a range, not a coefficient table.',st:['Python','scikit-learn','Feature engineering','Power BI'],sim:'ml'},
+ {id:'quaaf',t:'Fund holdings and risk analytics',k:'Investment analytics',m:'10-year VaR and expected shortfall',s:'A SQL Server and Power BI view of a student-run fund: returns, allocation, a CPI+3% target and risk.',ch:'The fund\'s positions lived in monthly brokerage PDF statements, so returns, allocation and risk were rebuilt by hand and were hard to reconcile across currencies.',ap:'Led a team building a pipeline from brokerage statements into a SQL Server star schema (holdings fact, security and date dimensions, Canadian CPI) with CAD and USD separation, reconciliation controls and idempotent loads. The Power BI layer reports monthly and rolling 3-month returns, asset allocation and change in market value, 1-month, YTD and LTM return by security, performance against a CPI+3% target, and 10-year value at risk, expected shortfall and annualized volatility against a risk band, with a written risk commentary generated from the measures.',im:'Fund leadership reviews performance and risk from one refreshed model instead of statement PDFs.',why:'This is the return, risk and benchmark logic financial institutions run on, built on a governed SQL foundation.',st:['SQL Server','Power BI','DAX','Data modelling'],sim:'risk'},
+ {id:'rm',t:'Revenue management scorecards',k:'Demand analytics',m:'20 exports automated daily',s:'An in-house rebuild of a vendor-style RMS view: on the books, pace, pickup, segment mix and forecast.',ch:'Revenue managers exported two reports per property by hand every morning to rebuild one scorecard for ten general managers.',ap:'A desktop robot downloads all exports. Power Query reshapes them into a star schema; DAX measures cover current year, last year, same time last year, pickup and three months of forecast. A cloud flow refreshes the model and exports a PDF per property.',im:'About 30 minutes saved each day on the revenue report, and less reliance on externally sourced reporting. I documented the licence cost of automating the last step and recommended keeping it manual.',why:'Segment mix and booking pace are customer-demand signals. Reading them alongside price is the core of commercial analytics.',st:['Power Automate Desktop','Power BI','REST API'],demo:'duetto'},
+ {id:'mkt',t:'Marketing spend and project reporting',k:'Marketing operations',m:'Weekly executive update, automated',s:'A spend-versus-budget dashboard, a request workflow, and a weekly project report emailed to executives.',ch:'Marketing requests arrived by email with unclear ownership, spend was hard to see against budget, and executives had no regular view of project status.',ap:'Refined the request intake and project tracking so every request has an owner, a status and a designer assigned. Built a Power BI dashboard of marketing spend versus budget by project, category and prior year. Added a Power Automate flow that sends executives a weekly report of project updates.',im:'Leaders see spend against plan and project progress every week without asking for it, and the marketing team spends less time on status updates.',why:'Measuring marketing starts with clean data about what was asked for, what was produced and what it cost, delivered to the people who fund it.',st:['Power BI','Power Automate','Forms']},
+ {id:'wage',t:'Labour analytics at scale',k:'Automation',m:'30 hours saved every day',s:'One refresh turns payroll exports into daily labour as a percentage of sales by department.',ch:'Wage cost only reaches the ledger monthly, so each of 15 hotel accountants rebuilt it by hand, about two hours every day.',ap:'A macro-enabled workbook per property: Power Query pulls the time-and-attendance export, maps roles to departments, prices hours by earning type, handles staff borrowed between properties and refreshes every view.',im:'About two hours a day returned to each of 15 accountants, roughly 30 hours a day. The output also feeds the weekly department head agenda.',why:'Analytics teams scale by automating the routine so people can spend time on the questions.',st:['Excel VBA','Power Query','Payroll data'],demo:'wage-cost'},
+ {id:'hr',t:'HR lifecycle automation',k:'Process design',m:'6 connected flows',s:'Offer to 90-day review with no manual hand-offs, on Power Automate with an Azure backend.',ch:'Hiring, payroll setup and reviews ran on email chains, and forms went missing between property HR, payroll and managers.',ap:'Designed six connected flows (approval, tax-form intake, payroll hand-off, benefits enrollment, review reminders, 90-day self review) around one tracker ID per hire, with controls, testing and change management.',im:'Documents file themselves, and the right accountant or manager is told the moment they need to act.',why:'Shows end-to-end ownership: process design, controls and adoption, not just the build.',st:['Power Automate','SharePoint','Teams','Azure'],demo:'hris',ext:['https://candinns-hris.netlify.app/','Demo site (synthetic data)']},
+ {id:'awards',t:'Performance recognition framework',k:'Performance management',m:'11 categories, one rule set',s:'Quarterly awards decided by an eligibility gate, then a ranking metric.',ch:'Awards across hotels, restaurants and service departments were chosen from spreadsheets, and no one could explain why a team won.',ap:'Defined, with leadership, a gate and a ranking metric per category, and built them in DAX. If nobody passes the gate, the dashboard says "No one eligible" rather than crowning the least-bad performer.',im:'A transparent rule set the whole organization can see and trust each quarter.',why:'Good KPI design changes behaviour. Agreeing thresholds with executives is a large part of the job.',st:['Power BI','DAX','KPI design'],demo:'quarterly'}];
+const cases=$('#cases');
+C.forEach((c,i)=>{const b=document.createElement('button');b.className='case';b.type='button';b.innerHTML='<div class="k"><span class="label">'+c.k+'</span><span class="label">'+String(i+1).padStart(2,'0')+'</span></div><h3>'+c.t+'</h3><div class="metric">'+c.m+'</div><p>'+c.s+'</p><div class="tags">'+c.st.map(t=>'<span>'+t+'</span>').join('')+'</div><span class="more">Read the case →</span>';b.onclick=()=>open(c);cases.appendChild(b)});
+const dlg=$('#dlg');
+function open(c){$('#dlg-body').innerHTML='<button class="x" type="button" aria-label="Close" id="dlg-x">×</button><div class="label">'+c.k+'</div><h3 id="dlg-t">'+c.t+'</h3><div class="cols"><div><h4>Challenge</h4><p>'+c.ch+'</p></div><div><h4>What I built</h4><p>'+c.ap+'</p></div><div><h4>Impact</h4><p>'+c.im+'</p></div></div><p class="why"><b>Why it matters.</b> '+c.why+'</p>'+(c.sim?'<div id="sim" class="sim"></div>':'')+'<div class="tags">'+c.st.map(t=>'<span>'+t+'</span>').join('')+'</div>'+((c.demo||c.ext)?'<div class="links">'+(c.demo?'<a class="btn" href="'+DEMO+'#'+c.demo+'" target="_blank" rel="noopener">Open interactive demo ↗</a>':'')+(c.ext?'<a class="btn line" href="'+c.ext[0]+'" target="_blank" rel="noopener">'+c.ext[1]+' ↗</a>':'')+'</div>':'');
+  $('#dlg-x').onclick=()=>dlg.close();if(c.sim==='ml')simML($('#sim'));if(c.sim==='risk')simRisk($('#sim'));if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','')}
+
+/* ---- what-if simulator (synthetic) ---- */
+function simML(el){
+  const V={'Event centre':[42000,'covers',95],'Sports pub':[6800,'covers',31],'Lounge':[3100,'covers',27],'Banquet':[9500,'covers',62]};
+  const MS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],SEA=[.82,.86,.92,.95,1.02,1.08,1.12,1.1,1.0,.98,.96,1.12];
+  const D=[['wk','Weekend',.15],['hol','Holiday',.12],['lw','Long weekend',.08],['game','Home hockey game',.18],['con','Concert',.25],['cold','Extreme cold',-.14]];
+  let v='Sports pub',m=11,on={wk:true,game:true};
+  el.innerHTML='<div class="label" style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><span>Try the scenario tool</span><span class="synth">Synthetic</span></div><div class="simrow"><label class="f">Venue<select id="s-v">'+Object.keys(V).map(k=>'<option'+(k===v?' selected':'')+'>'+k+'</option>').join('')+'</select></label><label class="f">Month<select id="s-m">'+MS.map((x,i)=>'<option value="'+i+'"'+(i===m?' selected':'')+'>'+x+'</option>').join('')+'</select></label></div><div class="tog" id="s-d">'+D.map(d=>'<button type="button" data-k="'+d[0]+'" aria-pressed="'+!!on[d[0]]+'">'+d[1]+'</button>').join('')+'</div><div id="s-out"></div>';
+  const calc=()=>{const [base,,spend]=V[v];let mult=SEA[m],n=0;D.forEach(d=>{if(on[d[0]]){mult*=1+d[2];n++}});const p=base*mult,ly=p/(1.03+((m*7)%5)/100),w=.07+.025*n,lo=p*(1-w),hi=p*(1+w),mx=hi*1.08;
+    $('#s-out').innerHTML='<div class="simk"><div><span>Predicted daily revenue</span><b>$'+Math.round(p).toLocaleString('en-CA')+'</b></div><div><span>vs last year</span><b style="color:'+(p>=ly?'var(--good)':'var(--bad)')+'">'+(p>=ly?'+':'')+((p/ly-1)*100).toFixed(1)+'%</b></div><div><span>Expected covers</span><b>'+Math.round(p/spend).toLocaleString('en-CA')+'</b></div></div><div class="rng"><div class="band" style="left:'+(lo/mx*100)+'%;width:'+((hi-lo)/mx*100)+'%"></div><div class="pt" style="left:'+(p/mx*100)+'%"></div><div class="ly" style="left:'+(ly/mx*100)+'%"></div></div><div class="rngl"><span>Worst case $'+Math.round(lo).toLocaleString('en-CA')+'</span><span>Last year ▏</span><span>Best case $'+Math.round(hi).toLocaleString('en-CA')+'</span></div>'};
+  el.querySelector('#s-v').onchange=e=>{v=e.target.value;calc()};el.querySelector('#s-m').onchange=e=>{m=+e.target.value;calc()};
+  el.querySelectorAll('#s-d button').forEach(b=>b.onclick=()=>{on[b.dataset.k]=!on[b.dataset.k];b.setAttribute('aria-pressed',String(!!on[b.dataset.k]));calc()});calc()}
+function simRisk(el){
+  const R=[1.8,-0.6,2.4,0.9,-1.7,3.1,1.2,-0.4,2.2,0.7,-2.3,1.9,2.6,-0.9,1.4,0.3,2.8,-1.1,1.6,0.8,-0.2,2.1,1.0,1.5];
+  const W=560,H=150,pl=30,pt=10,pb=22,mx=4,bw=(W-pl)/R.length,Y=v=>pt+(1-(v+mx)/(2*mx))*(H-pt-pb);
+  let s='<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Rolling monthly returns"><line x1="'+pl+'" x2="'+W+'" y1="'+Y(0)+'" y2="'+Y(0)+'" stroke="var(--line)"/>';
+  [-4,0,4].forEach(v=>s+='<text x="'+(pl-6)+'" y="'+(Y(v)+4)+'" text-anchor="end">'+v+'%</text>');
+  R.forEach((v,i)=>{s+='<rect x="'+(pl+i*bw+2)+'" y="'+Math.min(Y(v),Y(0))+'" width="'+(bw-4)+'" height="'+Math.abs(Y(v)-Y(0))+'" rx="2" fill="'+(v>=0?'var(--accent)':'var(--bad)')+'"><title>'+v+'%</title></rect>'});
+  const cpi=.55;s+='<line x1="'+pl+'" x2="'+W+'" y1="'+Y(cpi)+'" y2="'+Y(cpi)+'" stroke="var(--marigold)" stroke-width="2" stroke-dasharray="6 4"/><text x="'+(W-4)+'" y="'+(Y(cpi)-5)+'" text-anchor="end" style="fill:var(--marigold);font-weight:600">CPI+3% monthly target</text></svg>';
+  el.innerHTML='<div class="label" style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><span>What the risk page shows</span><span class="synth">Synthetic</span></div>'+s+'<div class="simk"><div><span>VaR 95%, 10-year</span><b>-3.9%</b></div><div><span>Expected shortfall 95%</span><b>-5.6%</b></div><div><span>Annualized volatility</span><b>9.8%</b></div><div><span>Risk band</span><b style="color:var(--good)">Within target</b></div></div>'}
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+
+$('#copy').onclick=()=>{const t='joanneyangyy@gmail.com';const done=()=>{$('#copy').textContent='Copied'};try{navigator.clipboard.writeText(t).then(done,()=>{sel()})}catch(e){sel()}function sel(){const r=document.createRange();r.selectNodeContents($('#em'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('#copy').textContent='Selected, press Ctrl+C'}};
+})();
+</script>
+
+</body>
+</html>
